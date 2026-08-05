@@ -17,12 +17,16 @@ const SUGGESTIONS = [
   "Are there any overdue rentals?",
 ];
 
+// Validated all-pairs categorical set (node scripts/validate_palette.js,
+// --pairs all — these badges can appear in any adjacency while scrolling
+// chat, so the stricter all-pairs check applies, not just adjacent):
+// worst pair clears both the CVD (>=8) and normal-vision (>=15) floors.
 const AGENT_BADGE_COLORS: Record<string, string> = {
-  fleet: "bg-blue-100 text-blue-700",
-  rental_scheduling: "bg-purple-100 text-purple-700",
-  demand_forecast: "bg-emerald-100 text-emerald-700",
-  smart_alert: "bg-amber-100 text-amber-700",
-  predictive_maintenance: "bg-red-100 text-red-700",
+  fleet: "bg-[#2a78d6]/10 text-[#2a78d6]",
+  rental_scheduling: "bg-[#1baf7a]/10 text-[#118a5e]",
+  demand_forecast: "bg-[#008300]/10 text-[#008300]",
+  smart_alert: "bg-[#4a3aa7]/10 text-[#4a3aa7]",
+  predictive_maintenance: "bg-[#e34948]/10 text-[#e34948]",
 };
 
 export default function AgentChat() {
@@ -67,13 +71,13 @@ export default function AgentChat() {
           <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
             <div
               className={`max-w-[80%] rounded-lg px-3 py-2 text-sm ${
-                m.role === "user" ? "bg-blue-600 text-white" : "bg-slate-100 text-slate-800"
+                m.role === "user" ? "bg-brand-500 text-stone-900 font-medium" : "bg-stone-100 text-stone-800"
               }`}
             >
               {m.agentUsed && (
                 <span
                   className={`inline-block text-[10px] font-semibold uppercase tracking-wide rounded-full px-2 py-0.5 mb-1 ${
-                    AGENT_BADGE_COLORS[m.agentKey ?? ""] ?? "bg-slate-200 text-slate-700"
+                    AGENT_BADGE_COLORS[m.agentKey ?? ""] ?? "bg-stone-200 text-stone-700"
                   }`}
                 >
                   {m.agentUsed}
@@ -85,7 +89,7 @@ export default function AgentChat() {
         ))}
         {busy && (
           <div className="flex justify-start">
-            <div className="bg-slate-100 text-slate-500 rounded-lg px-3 py-2 text-sm">Thinking…</div>
+            <div className="bg-stone-100 text-stone-500 rounded-lg px-3 py-2 text-sm">Thinking…</div>
           </div>
         )}
         <div ref={bottomRef} />
@@ -97,7 +101,7 @@ export default function AgentChat() {
             <button
               key={s}
               onClick={() => send(s)}
-              className="text-xs bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-full px-3 py-1.5"
+              className="text-xs bg-stone-100 hover:bg-stone-200 text-stone-600 rounded-full px-3 py-1.5"
             >
               {s}
             </button>
@@ -110,10 +114,10 @@ export default function AgentChat() {
           e.preventDefault();
           send(input);
         }}
-        className="flex gap-2 pt-2 border-t border-slate-200"
+        className="flex gap-2 pt-2 border-t border-stone-200"
       >
         <input
-          className="flex-1 border border-slate-300 rounded-lg px-3 py-2 text-sm"
+          className="flex-1 border border-stone-300 rounded-lg px-3 py-2 text-sm"
           placeholder="Ask about equipment, alerts, forecasts, maintenance…"
           value={input}
           onChange={(e) => setInput(e.target.value)}

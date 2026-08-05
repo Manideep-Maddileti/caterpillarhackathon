@@ -6,7 +6,7 @@ export default function AssetTable({ equipment }: { equipment: Equipment[] }) {
     <div className="overflow-x-auto">
       <table className="min-w-full text-sm">
         <thead>
-          <tr className="text-left text-xs uppercase tracking-wide text-slate-500 border-b border-slate-200">
+          <tr className="text-left text-xs uppercase tracking-wide text-stone-500 border-b border-stone-200">
             <th className="py-2 pr-4">Equipment</th>
             <th className="py-2 pr-4">Type</th>
             <th className="py-2 pr-4">Status</th>
@@ -21,8 +21,8 @@ export default function AssetTable({ equipment }: { equipment: Equipment[] }) {
         </thead>
         <tbody>
           {equipment.map((e) => (
-            <tr key={e.id} className="border-b border-slate-100 hover:bg-slate-50">
-              <td className="py-2 pr-4 font-medium text-slate-900">{e.equipment_code}</td>
+            <tr key={e.id} className="border-b border-stone-100 hover:bg-stone-50">
+              <td className="py-2 pr-4 font-medium text-stone-900">{e.equipment_code}</td>
               <td className="py-2 pr-4">{e.type}</td>
               <td className="py-2 pr-4"><StatusBadge status={e.status} /></td>
               <td className="py-2 pr-4">{e.assigned_customer?.name ?? "—"}</td>
