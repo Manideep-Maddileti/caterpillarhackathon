@@ -22,11 +22,23 @@ export default function SummaryCharts({ summary }: { summary: Summary }) {
 
   return (
     <div className="space-y-4">
+      <div>
+        <h2 className="text-sm font-semibold text-stone-700 mb-3">Fleet summary</h2>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <StatCard label="Total Runtime" value={`${summary.total_rented_hours} hrs`} />
+          <StatCard label="Average Idle Time" value={`${summary.idle_pct}%`} sub={`${summary.total_idle_hours}h idle`} />
+          <StatCard label="Most Active Site" value={summary.most_active_site ?? "—"} />
+          <StatCard label="Least Used Site" value={summary.least_used_site ?? "—"} />
+          <StatCard label="Utilization" value={`${summary.utilization_pct}%`} sub={`${summary.rented_equipment}/${summary.total_equipment} rented`} />
+          <StatCard label="Downtime" value={`${summary.downtime_pct}%`} sub={`${summary.downtime_equipment} available`} />
+        </div>
+      </div>
+
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <StatCard label="Utilization" value={`${summary.utilization_pct}%`} sub={`${summary.rented_equipment}/${summary.total_equipment} rented`} />
-        <StatCard label="Total Rented Hours" value={summary.total_rented_hours} />
-        <StatCard label="Idle %" value={`${summary.idle_pct}%`} sub={`${summary.total_idle_hours}h idle`} />
         <StatCard label="Revenue Estimate" value={`$${summary.revenue_estimate.toLocaleString()}`} />
+        <StatCard label="Total Fuel Usage" value={`${summary.total_fuel_usage} L`} />
+        <StatCard label="Total Equipment" value={summary.total_equipment} />
+        <StatCard label="Rented Now" value={summary.rented_equipment} />
       </div>
 
       <div className="grid md:grid-cols-2 gap-4">
@@ -57,12 +69,6 @@ export default function SummaryCharts({ summary }: { summary: Summary }) {
             </PieChart>
           </ResponsiveContainer>
         </Card>
-      </div>
-
-      <div className="grid md:grid-cols-3 gap-4">
-        <StatCard label="Downtime (available) equipment" value={summary.downtime_equipment} />
-        <StatCard label="Total fuel usage" value={`${summary.total_fuel_usage} L`} />
-        <StatCard label="Total equipment" value={summary.total_equipment} />
       </div>
     </div>
   );
