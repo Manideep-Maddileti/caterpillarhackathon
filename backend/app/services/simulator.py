@@ -1,9 +1,9 @@
 """Safety-net checks only. Actual live telemetry (GPS/fuel/runtime/idle)
-no longer changes here — that's driven externally by live_telemetry_client.py
-POSTing to /api/telemetry/report every ~10s, like a real IoT feed. This
-module just re-runs alert/anomaly/maintenance checks on an interval so
-they stay fresh even if the external client isn't running (e.g. right after
-seeding, or between client restarts).
+no longer changes here — that's driven externally by the telemetry_simulator
+package POSTing to /api/telemetry/report every ~10s, like a real IoT feed.
+This module just re-runs alert/anomaly/maintenance checks on an interval so
+they stay fresh even if the external simulator isn't running (e.g. right
+after seeding, or between simulator restarts).
 """
 from sqlalchemy.orm import Session
 

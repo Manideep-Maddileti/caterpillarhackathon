@@ -11,7 +11,7 @@ See [Smart_Rental_Intelligence_Platform_Overview.pdf](Smart_Rental_Intelligence_
 - **Frontend:** React + TypeScript + Vite, Tailwind CSS, Recharts, Leaflet
 - **Backend:** FastAPI (Python), SQLAlchemy + SQLite
 - **AI:** LangGraph + LangChain, Groq (Llama 3.3 70B) — one orchestrator agent routing to 5 specialists (Fleet, Rental Scheduling, Demand Forecast, Smart Alert, Predictive Maintenance)
-- **Live data:** a standalone Python script posts simulated real-time telemetry to the REST API every ~10s
+- **Live data:** a standalone, physics- and event-driven telemetry simulator (`backend/telemetry_simulator/`) posts realistic real-time telemetry to the REST API every ~10s
 
 ## Running locally
 
@@ -38,14 +38,17 @@ npm run dev
 
 Visit the printed local URL and log in with `dealer@rental.com` / `demo123`.
 
-### Live telemetry client (optional)
+### Telemetry simulator (optional)
 
-With the backend running, simulate a real-time IoT feed for the fleet:
+With the backend running, simulate a realistic real-time IoT feed for the fleet — physics-based fuel/temperature/GPS/engine-health drift, duty-cycle state transitions (RUNNING/IDLE/OFF/MAINTENANCE), and occasional events (low fuel, overheating, maintenance required, geofence violation, unexpected movement, sensor failure). Must be run as a module (relative imports):
 
 ```bash
 cd backend
-python live_telemetry_client.py --interval 10
+python -m telemetry_simulator.simulator
+python -m telemetry_simulator.simulator --interval 5 --machines 5   # common overrides
 ```
+
+All tuning (rates, thresholds, event probabilities, feature flags) lives in `backend/telemetry_simulator/config.py`, overridable via env vars or `backend/.env`. State persists between restarts in `backend/telemetry_simulator_state.json` (gitignored) — delete it to re-bootstrap from the backend's current data.
 
 ## Notes
 

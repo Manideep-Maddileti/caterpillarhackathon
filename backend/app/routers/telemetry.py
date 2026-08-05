@@ -11,8 +11,8 @@ router = APIRouter(prefix="/api/telemetry", tags=["telemetry"])
 @router.post("/report")
 def report(payload: schemas.TelemetryReport, db: Session = Depends(get_db)):
     """Ingest one live telemetry reading for one equipment — this is the
-    endpoint live_telemetry_client.py calls every ~10s. Reusable by any
-    future real IoT feed or webhook with the same payload shape."""
+    endpoint the telemetry_simulator package calls every ~10s. Reusable by
+    any future real IoT feed or webhook with the same payload shape."""
     return report_telemetry(
         db,
         equipment_code=payload.equipment_code,

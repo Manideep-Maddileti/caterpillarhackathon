@@ -4,6 +4,8 @@ backend/__pycache__/
 backend/**/__pycache__/
 backend/rental.db
 backend/rental.db-journal
+backend/telemetry_simulator_state.json
+backend/telemetry_simulator_state.json.tmp
 *.pyc
 frontend/node_modules/
 frontend/dist/

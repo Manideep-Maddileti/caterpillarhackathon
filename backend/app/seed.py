@@ -5,10 +5,11 @@ dataset — so every screen (dashboard, map, agents) reasons about only these
 machines. All site coordinates are real Indian cities (never outside India).
 
 Ongoing "real-time" telemetry no longer comes from an in-process random
-jitter — it's driven by the external live_telemetry_client.py script
-POSTing to /api/telemetry/report every ~10s, exactly like a real IoT feed
-would. See app/main.py for the (much lighter) internal safety-net loop that
-just re-runs alert/anomaly/maintenance checks without touching telemetry.
+jitter — it's driven by the external telemetry_simulator package (run via
+`python -m telemetry_simulator.simulator`) POSTing to /api/telemetry/report
+every ~10s, exactly like a real IoT feed would. See app/main.py for the
+(much lighter) internal safety-net loop that just re-runs
+alert/anomaly/maintenance checks without touching telemetry.
 
 Seeds 4 active rentals (one due tomorrow, one overdue, two comfortably
 on-time) out of the 10 vehicles, so the dealer's "what's out right now"

@@ -1,7 +1,8 @@
 """Ingests one live telemetry reading for one equipment, exactly like a real
 IoT device or field gateway would push. This is the sole source of ongoing
-"real-time" data now — driven externally by live_telemetry_client.py calling
-POST /api/telemetry/report every ~10s, not an in-process random jitter.
+"real-time" data now — driven externally by the telemetry_simulator package
+calling POST /api/telemetry/report every ~10s, not an in-process random
+jitter.
 """
 from datetime import datetime
 from typing import Optional

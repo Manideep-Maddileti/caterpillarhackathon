@@ -9,9 +9,9 @@ from app.seed import seed_if_empty
 from app.services import simulator, forecast_service
 from app.routers import auth, equipment, customers, sites, rentals, dashboard, agent, telemetry
 
-# Real-time telemetry is driven externally now (live_telemetry_client.py ->
-# POST /api/telemetry/report every ~10s). This interval is just the
-# safety-net alert/anomaly/maintenance recheck, not telemetry generation.
+# Real-time telemetry is driven externally now (the telemetry_simulator
+# package -> POST /api/telemetry/report every ~10s). This interval is just
+# the safety-net alert/anomaly/maintenance recheck, not telemetry generation.
 SAFETY_NET_INTERVAL_SECONDS = 30
 
 
