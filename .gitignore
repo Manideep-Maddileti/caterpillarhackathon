@@ -1,0 +1,11 @@
+backend/.env
+backend/venv/
+backend/__pycache__/
+backend/**/__pycache__/
+backend/rental.db
+backend/rental.db-journal
+*.pyc
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+.DS_Store
