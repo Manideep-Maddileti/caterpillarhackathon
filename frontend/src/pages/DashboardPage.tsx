@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import AssetTable from "../components/AssetTable";
 import AssetMap from "../components/AssetMap";
 import FleetOverview from "../components/FleetOverview";
+import LiveTelemetryPanel from "../components/LiveTelemetryPanel";
 import SummaryCharts from "../components/SummaryCharts";
 import AlertsPanel from "../components/AlertsPanel";
 import ForecastPanel from "../components/ForecastPanel";
@@ -102,6 +103,8 @@ export default function DashboardPage({ dealerName }: { dealerName: string }) {
               <h2 className="text-sm font-semibold text-stone-700 mb-3">Live equipment map</h2>
               <AssetMap equipment={equipment} />
             </Card>
+
+            <LiveTelemetryPanel equipment={equipment} />
 
             <Card className="p-4">
               <div className="flex items-center justify-between mb-3">
