@@ -1,19 +1,5 @@
 @import "tailwindcss";
 
-@theme {
-  /* Caterpillar-yellow brand scale, anchored on the exact spec color at 500 */
-  --color-brand-50: #fffbeb;
-  --color-brand-100: #fff3c4;
-  --color-brand-200: #ffe896;
-  --color-brand-300: #ffdb5c;
-  --color-brand-400: #ffcf33;
-  --color-brand-500: #ffc300;
-  --color-brand-600: #e0ab00;
-  --color-brand-700: #b88c00;
-  --color-brand-800: #8f6d00;
-  --color-brand-900: #6b5200;
-}
-
 :root {
   color-scheme: light;
 }
@@ -21,7 +7,7 @@
 body {
   margin: 0;
   font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
-  background: #fafaf9;
+  background: #f5f6f8;
 }
 
 .leaflet-container {

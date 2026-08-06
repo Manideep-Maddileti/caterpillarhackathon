@@ -34,24 +34,14 @@ def get_summary(db: Session = Depends(get_db)):
         rate = DAY_RATE.get(eq.type, 200) if eq else 200
         revenue += (rental.rental_days or 0) * rate
 
-    # Most/least active real sites (excludes "Unassigned" — not a real site).
-    real_sites = {k: v for k, v in per_site.items() if k != "Unassigned"}
-    most_active_site = max(real_sites, key=real_sites.get) if real_sites else None
-    least_used_site = min(real_sites, key=real_sites.get) if real_sites else None
-
-    utilization_pct = round(rented / total * 100, 1)
-
     return {
         "total_equipment": len(equipment),
         "rented_equipment": rented,
-        "utilization_pct": utilization_pct,
+        "utilization_pct": round(rented / total * 100, 1),
         "total_rented_hours": round(total_runtime, 1),
         "total_idle_hours": round(total_idle, 1),
         "idle_pct": round(total_idle / (total_runtime + total_idle) * 100, 1) if (total_runtime + total_idle) else 0,
         "downtime_equipment": sum(1 for e in equipment if e.status == "available"),
-        "downtime_pct": round(100 - utilization_pct, 1),
-        "most_active_site": most_active_site,
-        "least_used_site": least_used_site,
         "total_fuel_usage": round(total_fuel, 1),
         "usage_per_site": [{"site": k, "hours": round(v, 1)} for k, v in per_site.items()],
         "revenue_estimate": round(revenue, 2),
