@@ -108,6 +108,9 @@ export interface Summary {
   total_idle_hours: number;
   idle_pct: number;
   downtime_equipment: number;
+  downtime_pct: number;
+  most_active_site: string | null;
+  least_used_site: string | null;
   total_fuel_usage: number;
   usage_per_site: { site: string; hours: number }[];
   revenue_estimate: number;

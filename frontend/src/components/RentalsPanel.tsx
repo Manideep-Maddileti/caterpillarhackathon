@@ -108,11 +108,11 @@ export default function RentalsPanel({
       {step === "availability" && (
         <Card className="p-4">
           <div className="flex items-center justify-between mb-3">
-            <h3 className="text-sm font-semibold text-slate-700">Step 1 — Check machine availability</h3>
+            <h3 className="text-sm font-semibold text-stone-700">Step 1 — Check machine availability</h3>
             <input
               type="text"
               placeholder="Search by code, type or site…"
-              className="border border-slate-300 rounded-lg px-3 py-1.5 text-sm w-64"
+              className="border border-stone-300 rounded-lg px-3 py-1.5 text-sm w-64"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
@@ -120,7 +120,7 @@ export default function RentalsPanel({
           <div className="overflow-x-auto max-h-[28rem] overflow-y-auto">
             <table className="min-w-full text-sm">
               <thead className="sticky top-0 bg-white">
-                <tr className="text-left text-xs uppercase tracking-wide text-slate-500 border-b border-slate-200">
+                <tr className="text-left text-xs uppercase tracking-wide text-stone-500 border-b border-stone-200">
                   <th className="py-2 pr-4">Equipment</th>
                   <th className="py-2 pr-4">Type</th>
                   <th className="py-2 pr-4">Site</th>
@@ -132,8 +132,8 @@ export default function RentalsPanel({
                 {filtered.map((e) => {
                   const isAvailable = e.status === "available" && !pendingEquipmentIds.has(e.id);
                   return (
-                    <tr key={e.id} className="border-b border-slate-100 hover:bg-slate-50">
-                      <td className="py-2 pr-4 font-medium text-slate-900">{e.equipment_code}</td>
+                    <tr key={e.id} className="border-b border-stone-100 hover:bg-stone-50">
+                      <td className="py-2 pr-4 font-medium text-stone-900">{e.equipment_code}</td>
                       <td className="py-2 pr-4">{e.type}</td>
                       <td className="py-2 pr-4">{e.assigned_site?.site_code ?? "Unassigned"}</td>
                       <td className="py-2 pr-4"><StatusBadge status={e.status} /></td>
@@ -141,7 +141,7 @@ export default function RentalsPanel({
                         {isAvailable ? (
                           <Button onClick={() => startRental(e)}>Rent this machine →</Button>
                         ) : (
-                          <span className="text-xs text-slate-400">Not available</span>
+                          <span className="text-xs text-stone-400">Not available</span>
                         )}
                       </td>
                     </tr>
@@ -156,49 +156,49 @@ export default function RentalsPanel({
       {step === "new-customer" && chosenEquipment && (
         <Card className="p-4">
           <div className="flex items-center justify-between mb-3">
-            <h3 className="text-sm font-semibold text-slate-700">
+            <h3 className="text-sm font-semibold text-stone-700">
               Step 2 — Create new customer for {chosenEquipment.equipment_code} ({chosenEquipment.type})
             </h3>
-            <button onClick={backToAvailability} className="text-xs text-blue-600 underline">
+            <button onClick={backToAvailability} className="text-xs text-stone-900 underline decoration-brand-500 decoration-2 underline-offset-2 hover:text-brand-700">
               ← Back to availability
             </button>
           </div>
           <form onSubmit={submit} className="grid grid-cols-2 md:grid-cols-3 gap-3 items-end">
             <div>
-              <label className="text-xs text-slate-500">Customer name *</label>
+              <label className="text-xs text-stone-500">Customer name *</label>
               <input
                 required
-                className="mt-1 w-full border border-slate-300 rounded-lg px-2 py-1.5 text-sm"
+                className="mt-1 w-full border border-stone-300 rounded-lg px-2 py-1.5 text-sm"
                 value={customerName}
                 onChange={(e) => setCustomerName(e.target.value)}
               />
             </div>
             <div>
-              <label className="text-xs text-slate-500">Company</label>
+              <label className="text-xs text-stone-500">Company</label>
               <input
-                className="mt-1 w-full border border-slate-300 rounded-lg px-2 py-1.5 text-sm"
+                className="mt-1 w-full border border-stone-300 rounded-lg px-2 py-1.5 text-sm"
                 value={customerCompany}
                 onChange={(e) => setCustomerCompany(e.target.value)}
               />
             </div>
             <div>
-              <label className="text-xs text-slate-500">Contact</label>
+              <label className="text-xs text-stone-500">Contact</label>
               <input
-                className="mt-1 w-full border border-slate-300 rounded-lg px-2 py-1.5 text-sm"
+                className="mt-1 w-full border border-stone-300 rounded-lg px-2 py-1.5 text-sm"
                 value={customerContact}
                 onChange={(e) => setCustomerContact(e.target.value)}
               />
             </div>
             {chosenEquipment.assigned_site_id ? (
               <div>
-                <label className="text-xs text-slate-500">Site</label>
+                <label className="text-xs text-stone-500">Site</label>
                 <p className="mt-1 text-sm py-1.5">{chosenEquipment.assigned_site?.site_code} (fixed)</p>
               </div>
             ) : (
               <div>
-                <label className="text-xs text-slate-500">Site</label>
+                <label className="text-xs text-stone-500">Site</label>
                 <select
-                  className="mt-1 w-full border border-slate-300 rounded-lg px-2 py-1.5 text-sm"
+                  className="mt-1 w-full border border-stone-300 rounded-lg px-2 py-1.5 text-sm"
                   value={siteId}
                   onChange={(ev) => setSiteId(ev.target.value ? Number(ev.target.value) : "")}
                 >
@@ -210,11 +210,11 @@ export default function RentalsPanel({
               </div>
             )}
             <div>
-              <label className="text-xs text-slate-500">Rental days</label>
+              <label className="text-xs text-stone-500">Rental days</label>
               <input
                 type="number"
                 min={1}
-                className="mt-1 w-full border border-slate-300 rounded-lg px-2 py-1.5 text-sm"
+                className="mt-1 w-full border border-stone-300 rounded-lg px-2 py-1.5 text-sm"
                 value={rentalDays}
                 onChange={(e) => setRentalDays(Number(e.target.value))}
               />
@@ -226,11 +226,11 @@ export default function RentalsPanel({
       )}
 
       <Card className="p-4">
-        <h3 className="text-sm font-semibold text-slate-700 mb-3">Rental history</h3>
+        <h3 className="text-sm font-semibold text-stone-700 mb-3">Rental history</h3>
         <div className="overflow-x-auto">
           <table className="min-w-full text-sm">
             <thead>
-              <tr className="text-left text-xs uppercase tracking-wide text-slate-500 border-b border-slate-200">
+              <tr className="text-left text-xs uppercase tracking-wide text-stone-500 border-b border-stone-200">
                 <th className="py-2 pr-4">Equipment</th>
                 <th className="py-2 pr-4">Status</th>
                 <th className="py-2 pr-4">Return date</th>
@@ -242,13 +242,13 @@ export default function RentalsPanel({
               {rentals.map((r) => {
                 const eq = equipmentByRental(r);
                 return (
-                  <tr key={r.id} className="border-b border-slate-100">
+                  <tr key={r.id} className="border-b border-stone-100">
                     <td className="py-2 pr-4 font-medium">{eq?.equipment_code ?? r.equipment_id}</td>
                     <td className="py-2 pr-4"><StatusBadge status={r.status} /></td>
                     <td className="py-2 pr-4">{r.return_date ? new Date(r.return_date).toLocaleString() : "—"}</td>
                     <td className="py-2 pr-4">
                       {r.qr_code && (
-                        <button onClick={() => setQrModal(r)} className="text-blue-600 text-xs underline">
+                        <button onClick={() => setQrModal(r)} className="text-stone-900 text-xs underline decoration-brand-500 decoration-2 underline-offset-2 hover:text-brand-700">
                           View QR
                         </button>
                       )}
@@ -282,7 +282,7 @@ export default function RentalsPanel({
               </p>
             ) : (
               <div className="mt-3">
-                <p className="text-xs text-slate-500 mb-2">Scan to check this rental out.</p>
+                <p className="text-xs text-stone-500 mb-2">Scan to check this rental out.</p>
                 <Button onClick={() => doCheckout(qrModal.id)}>Scan → Check Out</Button>
               </div>
             )}

@@ -31,14 +31,14 @@ export default function FleetOverview({ equipment, rentals }: { equipment: Equip
       </div>
 
       <Card className="p-4">
-        <h3 className="text-sm font-semibold text-slate-700 mb-3">Currently rented — live status</h3>
+        <h3 className="text-sm font-semibold text-stone-700 mb-3">Currently rented — live status</h3>
         {outNow.length === 0 ? (
-          <p className="text-sm text-slate-500">Nothing is out right now — the whole fleet is available.</p>
+          <p className="text-sm text-stone-500">Nothing is out right now — the whole fleet is available.</p>
         ) : (
           <div className="overflow-x-auto">
             <table className="min-w-full text-sm">
               <thead>
-                <tr className="text-left text-xs uppercase tracking-wide text-slate-500 border-b border-slate-200">
+                <tr className="text-left text-xs uppercase tracking-wide text-stone-500 border-b border-stone-200">
                   <th className="py-2 pr-4">Equipment</th>
                   <th className="py-2 pr-4">Customer</th>
                   <th className="py-2 pr-4">Checked out</th>
@@ -52,9 +52,9 @@ export default function FleetOverview({ equipment, rentals }: { equipment: Equip
                   const returnDate = e.return_date ? new Date(e.return_date) : null;
                   const diff = returnDate ? daysBetween(returnDate, now) : null;
                   return (
-                    <tr key={e.id} className="border-b border-slate-100">
+                    <tr key={e.id} className="border-b border-stone-100">
                       <td className="py-2 pr-4 font-medium">
-                        {e.equipment_code} <span className="text-slate-400 font-normal">({e.type})</span>
+                        {e.equipment_code} <span className="text-stone-400 font-normal">({e.type})</span>
                       </td>
                       <td className="py-2 pr-4">{e.assigned_customer?.name ?? "—"}</td>
                       <td className="py-2 pr-4">
@@ -67,7 +67,7 @@ export default function FleetOverview({ equipment, rentals }: { equipment: Equip
                             Overdue by {Math.abs(diff ?? 0)} day{Math.abs(diff ?? 0) === 1 ? "" : "s"}
                           </span>
                         ) : diff !== null && diff <= 1 ? (
-                          <span className="text-amber-600 font-medium">Due {diff <= 0 ? "today" : "tomorrow"}</span>
+                          <span className="text-orange-600 font-medium">Due {diff <= 0 ? "today" : "tomorrow"}</span>
                         ) : (
                           <span className="text-emerald-600 font-medium">{diff} days left</span>
                         )}
@@ -82,9 +82,9 @@ export default function FleetOverview({ equipment, rentals }: { equipment: Equip
       </Card>
 
       <Card className="p-4">
-        <h3 className="text-sm font-semibold text-slate-700 mb-3">Available now</h3>
+        <h3 className="text-sm font-semibold text-stone-700 mb-3">Available now</h3>
         {available.length === 0 ? (
-          <p className="text-sm text-slate-500">Everything is currently rented out.</p>
+          <p className="text-sm text-stone-500">Everything is currently rented out.</p>
         ) : (
           <div className="flex flex-wrap gap-2">
             {available.map((e) => (
