@@ -100,10 +100,10 @@ export default function AssetMap({ equipment }: { equipment: Equipment[] }) {
           );
         })}
       </MapContainer>
-      <div className="flex items-center gap-4 mt-2 text-xs text-stone-500">
+      <div className="flex items-center gap-4 mt-2 text-xs text-slate-500">
         <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full bg-blue-600 inline-block" /> Live position (in geofence)</span>
         <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full bg-red-600 inline-block" /> Live position (outside geofence)</span>
-        <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full bg-stone-400 inline-block" /> Designated location</span>
+        <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full bg-slate-400 inline-block" /> Designated location</span>
       </div>
     </div>
   );

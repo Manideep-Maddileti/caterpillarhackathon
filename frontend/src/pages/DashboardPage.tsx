@@ -3,7 +3,6 @@ import Header from "../components/Header";
 import AssetTable from "../components/AssetTable";
 import AssetMap from "../components/AssetMap";
 import FleetOverview from "../components/FleetOverview";
-import LiveTelemetryPanel from "../components/LiveTelemetryPanel";
 import SummaryCharts from "../components/SummaryCharts";
 import AlertsPanel from "../components/AlertsPanel";
 import ForecastPanel from "../components/ForecastPanel";
@@ -70,7 +69,7 @@ export default function DashboardPage({ dealerName }: { dealerName: string }) {
   }, [equipment, assetSearch]);
 
   return (
-    <div className="min-h-screen bg-stone-100">
+    <div className="min-h-screen bg-slate-100">
       <Header dealerName={dealerName} onDataChanged={refresh} />
 
       {(overdueCount > 0 || dueSoonCount > 0) && (
@@ -80,13 +79,13 @@ export default function DashboardPage({ dealerName }: { dealerName: string }) {
         </div>
       )}
 
-      <nav className="bg-stone-900 px-6 flex gap-1">
+      <nav className="bg-white border-b border-slate-200 px-6 flex gap-1">
         {TABS.map((t) => (
           <button
             key={t}
             onClick={() => setTab(t)}
             className={`px-4 py-2.5 text-sm font-medium border-b-2 transition ${
-              tab === t ? "border-brand-500 text-brand-500" : "border-transparent text-stone-400 hover:text-stone-100"
+              tab === t ? "border-blue-600 text-blue-600" : "border-transparent text-slate-500 hover:text-slate-800"
             }`}
           >
             {t}
@@ -100,21 +99,19 @@ export default function DashboardPage({ dealerName }: { dealerName: string }) {
             <FleetOverview equipment={equipment} rentals={rentals} />
 
             <Card className="p-4">
-              <h2 className="text-sm font-semibold text-stone-700 mb-3">Live equipment map</h2>
+              <h2 className="text-sm font-semibold text-slate-700 mb-3">Live equipment map</h2>
               <AssetMap equipment={equipment} />
             </Card>
 
-            <LiveTelemetryPanel equipment={equipment} />
-
             <Card className="p-4">
               <div className="flex items-center justify-between mb-3">
-                <h2 className="text-sm font-semibold text-stone-700">
-                  Full fleet details <span className="text-stone-400 font-normal">({filteredEquipment.length} of {equipment.length})</span>
+                <h2 className="text-sm font-semibold text-slate-700">
+                  Full fleet details <span className="text-slate-400 font-normal">({filteredEquipment.length} of {equipment.length})</span>
                 </h2>
                 <input
                   type="text"
                   placeholder="Search by code, type, status, site…"
-                  className="border border-stone-300 rounded-lg px-3 py-1.5 text-sm w-72"
+                  className="border border-slate-300 rounded-lg px-3 py-1.5 text-sm w-72"
                   value={assetSearch}
                   onChange={(e) => setAssetSearch(e.target.value)}
                 />
@@ -142,21 +139,21 @@ export default function DashboardPage({ dealerName }: { dealerName: string }) {
         {tab === "Forecast & Anomalies" && (
           <div className="space-y-6">
             <div>
-              <h2 className="text-sm font-semibold text-stone-700 mb-3">Demand forecast — likely needed next</h2>
+              <h2 className="text-sm font-semibold text-slate-700 mb-3">Demand forecast — likely needed next</h2>
               <ForecastPanel forecast={forecast} />
             </div>
             <div>
-              <h2 className="text-sm font-semibold text-stone-700 mb-3">Anomaly feed</h2>
+              <h2 className="text-sm font-semibold text-slate-700 mb-3">Anomaly feed</h2>
               <div className="space-y-2">
                 {anomalies.length === 0 && (
-                  <Card className="p-4 text-sm text-stone-500">No anomalies detected.</Card>
+                  <Card className="p-4 text-sm text-slate-500">No anomalies detected.</Card>
                 )}
                 {anomalies.map((a, i) => (
                   <Card key={i} className="p-3">
-                    <p className="text-sm text-stone-800">
+                    <p className="text-sm text-slate-800">
                       <span className="font-medium">{a.equipment_code}</span> — {a.reason}
                     </p>
-                    <p className="text-xs text-stone-500 mt-1">Severity: {a.severity} · {a.recommended_action}</p>
+                    <p className="text-xs text-slate-500 mt-1">Severity: {a.severity} · {a.recommended_action}</p>
                   </Card>
                 ))}
               </div>
